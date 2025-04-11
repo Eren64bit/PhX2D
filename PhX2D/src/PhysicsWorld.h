@@ -1,16 +1,17 @@
 #pragma once
 #include "Rigidbody.h"
 #include <vector>
+#include "worldSettings.h"
 
 
-
-class PhysicsWorld {
+class PhysicsWorld : public worldSettings {
 public:
 	std::vector<RigiddBody*> bodies;
-	Vec2 gravity;
 
 
-	PhysicsWorld(Vec2 gravity_ = Vec2(0, 9.8f)) : gravity(gravity_) {}
+	PhysicsWorld(Vec2 gravity_ = Vec2(0, 9.8f)){
+		this->gravity = gravity_;
+	}
 
 	void addBody(RigiddBody* body) {
 	
@@ -24,8 +25,6 @@ public:
 			body->applyForce(gravity * body->mass);
 			body->update(dt);
 		}
-	
-	
 	}
 
 
